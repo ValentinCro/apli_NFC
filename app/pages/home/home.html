@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Who is here
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-row center>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          Qui est dans la salle ?
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list *ngIf="data != undefined">
+            <button ion-item *ngFor='let user of data'>
+              <ion-icon name="md-contact" item-left></ion-icon>
+              {{ user.userName }}
+            </button>
+          </ion-list>
+          <p *ngIf="data == undefined">
+            Il n'y a personne dans la salle
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
